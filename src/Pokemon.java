@@ -10,13 +10,15 @@ import java.util.List;
 public abstract class Pokemon {
     private final String name;
     private final int level;
-    private final int hp;
-    private final String food;
+    private int hp; //Voor Bonusopdracht heb ik deze niet meer 'final' gemaakt zodat deze kan worden aangepast in subklassen.
+    private final String food; //Bonusopdracht 1.
     private final String sound;
 //De bovenstaande 'final' variabelen worden ingesteld via de constructor en kunnen daarna niet meer worden gewijzigd.
     private String type;
     private List<String> attacks;
 //Deze niet-finale variabelen hebben zowel getters en setters.
+//Zie hieronder Bonus opdracht 1 (toevoeging variabele 'food'):
+
 
 //Constructor:
     public Pokemon(String name, int level, int hp, String food, String sound, String type, List<String> attacks) {
@@ -55,5 +57,14 @@ public abstract class Pokemon {
     }
     public void setAttacks(List<String> attacks) {
         this.attacks = attacks;
+    }
+
+    //Bonusopdracht 2: methode om de HP van de pokemon te verhogen wanneer hij gevoerd wordt
+    public void feedPokemon(int boost) {
+        this.hp += boost;
+        System.out.println(name + " has been fed. HP boosted by " + ". Current HP: " + hp);
+    }
+    public void boostHP(int boost) {
+        this.hp += boost; //Toevoeging methode voor bonusopdracht (na niet final maken van 'hp').
     }
 }
