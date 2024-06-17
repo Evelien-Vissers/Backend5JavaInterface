@@ -2,7 +2,7 @@
 import java.util.List;
 
 public class ElectricPokemon extends Pokemon {
-    public ElectricPokemon(String name, int level, int hp, String food, String sound) {
+    public ElectricPokemon(String name, int level, int hp, String food, String sound, List<String> attacks) {
         super(name, level, hp, food, sound, "electric", List.of("Thunder Punch", "Electro Ball", "Thunder", "Volt Tackle"));
     }
     public void thunderPunch(Pokemon attacker, Pokemon defender) {
