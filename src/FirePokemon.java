@@ -10,25 +10,16 @@ public class FirePokemon extends Pokemon {
     public FirePokemon(String name, int level, int hp, String food, String sound) {
         super(name, level, hp, food, sound, "fire", Arrays.asList("Inferno", "Pyro Ball", "Fire Lash", "Flame Thrower"));
     }
-
-    @Override
-    public String getType() {
-        return "Fire";
-    }
-    @Override
-    public List<String> getAttacks() {
-        return attacks;
-    }
     public void inferno(Pokemon attacker, Pokemon defender) {
-        //Implement attack logic
+        //Implement inferno attack
     }
     public void pyroBall(Pokemon attacker, Pokemon defender) {
-        //Implement attack logic
+        //Implement pyro ball attack
     }
     public void fireLash(Pokemon attacker, Pokemon defender) {
-        //Implment attack logic
+        //Implement attack fire lash attack
     }
     public void flameThrower(Pokemon attacker, Pokemon defender) {
-
+        //Implement flame thrower attack
     }
 }
