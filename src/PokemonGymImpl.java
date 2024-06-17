@@ -6,8 +6,7 @@ public class PokemonGymImpl implements PokemonGym {
 
     List<Pokemon> pokemons;
 
-    public PokemonGymImpl(List<Pokemon> pokemons) {
-        this.pokemons = pokemons;
+    public PokemonGymImpl(List<Pokemon> pokemons) {this.pokemons = pokemons;
     }
 
     @Override
