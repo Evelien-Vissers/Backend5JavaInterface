@@ -7,9 +7,15 @@ import java.util.Locale; //Necessary import to resolve 'Cannot resolve 'Locale''
 // Los in deze klasse alle foutmeldingen op door (abstracte) klassen met variabelen en methodes te maken en een interface met methodes (en soms een import).
 public class PokemonGymImpl implements PokemonGym {
 
+    private Scanner scanner; //Toevoeging voor Bonusopdracht 3. - declaratie 'Scanner'
     List<Pokemon> pokemons;
 
-    public PokemonGymImpl(List<Pokemon> pokemons) {this.pokemons = pokemons;
+    public PokemonGymImpl() { //Toevoeging voor Bonusopdracht 3. - Initialisatie 'Scanner'
+        this.scanner = new Scanner(System.in);
+    }
+
+    public PokemonGymImpl(List<Pokemon> pokemons) {
+        this.pokemons = pokemons;
     }
 
     @Override
@@ -21,11 +27,19 @@ public class PokemonGymImpl implements PokemonGym {
         System.out.println(Main.ANSI_GREEN + player1.getName() + Main.ANSI_RESET + ": I'm " + player1.getName() + " and i'm here to challenge you for a battle");
         System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET +": So you're after my badge too, lets fight!!!");
 
+        //Toevoeging Bonusopdracht 3:
+        System.out.println(player1.getName() + ", throw some food for your Pokemon:");
+        String food = scanner.nextLine();
+
+        //Verkrijg een Pokemon van de speler:
+        Pokemon pokemon = choosePokemon(player1);
+        pokemon.throwFood(food);//Gooi het voedsel naar de Pokemon
+
         Pokemon gymPokemon = chooseGymPokemon(gymOwner);
         System.out.println(Main.ANSI_RED + gymOwner.getName() + Main.ANSI_RESET +": I'll choose you, " + gymPokemon.getName());
-        Pokemon pokemon = choosePokemon(player1);
         System.out.println(Main.ANSI_GREEN + player1.getName() + Main.ANSI_RESET + ": I'll choose you, " + pokemon.getName());
 
+        //Toevoeging 'food' voor Bonusopdracht 3:
         fightRound(player1, gymOwner, pokemon, gymPokemon);
 
     }
@@ -57,8 +71,6 @@ public class PokemonGymImpl implements PokemonGym {
             System.out.println("Its " + owner.getName() + "'s turn to attack");
             gymOwnerAttacks(gymPokemon, pokemon);
             System.out.println("Its " + trainer.getName() + "'s turn to attack");
-            attackOrChange(pokemon, gymPokemon, trainer, owner);
-
         }
         if(pokemon.getHp() <= 0){
             System.out.println(gymPokemon.getName() + " has defeated " + pokemon.getName());
@@ -254,13 +266,21 @@ public class PokemonGymImpl implements PokemonGym {
         String choice = speler_A.nextLine();
 
         if (choice.equalsIgnoreCase("a")) {
+            // Attack
             String attack = chooseAttackPlayer(pokemon);
             performAttackPlayer(pokemon, gymPokemon, attack);
-        } else {
+
+            //Toevoeging Bonusopdracht 3:
+        } else if (choice.equalsIgnoreCase("c")) {
+            // Change Pokemon
             pokemon = choosePokemon(trainer);
             attackOrChange(pokemon, gymPokemon, trainer, gym);
             fightRound(trainer, gym, pokemon, gymPokemon);
+        } else if (choice.equalsIgnoreCase("f")) {
+            //Throw Food
+            System.out.println("Choose the food to throw:");
         }
+
     }
 
 }

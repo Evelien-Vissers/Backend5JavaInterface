@@ -59,12 +59,24 @@ public abstract class Pokemon {
         this.attacks = attacks;
     }
 
-    //Bonusopdracht 2: methode om de HP van de pokemon te verhogen wanneer hij gevoerd wordt
+    //Bonusopdracht 1b: methode om de HP van de pokemon te verhogen wanneer hij gevoerd wordt
     public void feedPokemon(int boost) {
         this.hp += boost;
         System.out.println(name + " has been fed. HP boosted by " + ". Current HP: " + hp);
     }
     public void boostHP(int boost) {
         this.hp += boost; //Toevoeging methode voor bonusopdracht (na niet final maken van 'hp').
+    }
+    //Bonusopdracht 2: methode om pokemonvoedsel naar Pokemon te gooien voor een aanval, ipv het doen van een aanval:
+    // Zie tevens PokemonGymImpl klasse voor implementatie hiervan:
+    public void throwFood(String food) {
+        //Controle of het voedsel overeenkomst met het type Pokemon:
+        if (food.equalsIgnoreCase(this.food)) {
+            //Geef boost aan de HP van de Pokemon
+            boostHP(30);
+            System.out.println(name + " received a boost from the food!");
+        } else {
+            System.out.println(name + " doesn't like this food...");
+        }
     }
 }
